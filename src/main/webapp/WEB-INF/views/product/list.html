@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>product list</title>
+</head>
+<body>
+<a href="/create-product">Create new product</a>
+<h1>List products</h1>
+<form action="/search-name" method="post">
+    Search name:
+    <input type="text" name="name">
+    <input type="submit" value="Search product">
+</form>
+<form action="/view-category" method="post">
+    Category:
+    <select name="category">
+        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+    </select>
+    <input type="submit" value="Search category">
+</form>
+<table border="1px solid black">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Color</th>
+        <th>Category</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="product : ${products}">
+        <tr>
+            <td th:text="${product.getName()}" style="font-weight: bold"></td>
+            <td th:text="${product.getPrice()}"></td>
+            <td th:text="${product.getQuantity()}"></td>
+            <td th:text="${product.getColor()}"></td>
+            <td th:text="(${product.getCategory() != null} ? ${product.getCategory().name} : '')"></td>
+            <td><a th:href="@{/view-blog/__${product.getId()}__}"/>View</td>
+            <td><a th:href="@{/edit-blog/__${product.getId()}__}"/>Edit</td>
+            <td><a th:href="@{/delete-blog/__${product.getId()}__}"/>Delete</td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/home'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+    <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+    <a th:href="@{'/home'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+</div>
+</body>
+</html>
