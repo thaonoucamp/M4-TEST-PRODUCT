@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
     @Query("select p from Product p order by p.name asc ")
-    Page<Product> findAllOrOrderByName(Pageable pageable);
+    Page<Product> findAllByName(Pageable pageable);
 
-    Page<Product> findAllByTitleContaining(String title, Pageable pageable);
+    Page<Product> findAllByName(String name, Pageable pageable);
 
     Iterable<Product> findAllByCategory(Category category);
 }

@@ -46,18 +46,18 @@ public class ProductController {
     }
 
     @GetMapping("/sort")
-    public ModelAndView sortByDate(@PageableDefault(value = 3, sort = "date", direction = Sort.Direction.ASC) Pageable pageable) {
-        Page<Product> products = productService.findAllOrOrderByDate(pageable);
-        ModelAndView modelAndView = new ModelAndView("/blog/list");
+    public ModelAndView sortByPrice(@PageableDefault(value = 3, sort = "price", direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<Product> products = productService.findAllByName(pageable);
+        ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products", products);
         return modelAndView;
     }
 
-    @PostMapping("/search-title")
-    public ModelAndView resultSearch(@RequestParam("title") Optional<String> title, Pageable pageable) {
+    @PostMapping("/search-name")
+    public ModelAndView resultSearch(@RequestParam("name") Optional<String> name, Pageable pageable) {
         Page<Product> products;
-        if (title.isPresent()) {
-            products = productService.findAllByTitleContaining(title.get(), pageable);
+        if (name.isPresent()) {
+            products = productService.findAllByName(name.get(), pageable);
         } else {
             products = productService.findAll(pageable);
         }

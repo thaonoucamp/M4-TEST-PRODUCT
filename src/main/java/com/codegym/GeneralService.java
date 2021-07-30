@@ -1,6 +1,5 @@
 package com.codegym;
 
-import com.codegym.model.Category;
 
 import java.util.Optional;
 

@@ -1,6 +1,5 @@
 package com.codegym.configuration;
 
-import com.codegym.formatter.LocalDateFormatter;
 import com.codegym.service.CategoryService;
 import com.codegym.service.ProductService;
 import com.codegym.service.impl.CategoryServiceImpl;
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -118,19 +116,13 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     @Bean
-    public ProductService blogService() {
+    public ProductService productService() {
         return new ProductServiceImpl();
     }
 
     @Bean
     public CategoryService categoryService(){
         return new CategoryServiceImpl();
-    }
-
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        LocalDateFormatter localDateFormatter = new LocalDateFormatter("yyyy-MM-dd");
-        registry.addFormatter(localDateFormatter);
     }
 
 }

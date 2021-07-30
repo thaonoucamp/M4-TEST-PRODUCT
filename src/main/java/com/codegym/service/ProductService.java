@@ -9,9 +9,10 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProductService extends GeneralService<Product> {
     Page<Product> findAll(Pageable pageable);
-    Page<Product> findAllOrOrderByDate(Pageable pageable);
 
-    Page<Product> findAllByTitleContaining(String title, Pageable pageable);
+    Page<Product> findAllByName(Pageable pageable);
+
+    Page<Product> findAllByName(String name, Pageable pageable);
 
     Iterable<Product> findAllByCategory(Category category);
 }

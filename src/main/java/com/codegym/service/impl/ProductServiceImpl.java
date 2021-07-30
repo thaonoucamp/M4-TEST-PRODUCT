@@ -44,13 +44,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> findAllOrOrderByDate(Pageable pageable) {
+    public Page<Product> findAllByName(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Product> findAllByTitleContaining(String title, Pageable pageable) {
-        return productRepository.findAllByTitleContaining(title, pageable);
+    public Page<Product> findAllByName(String name, Pageable pageable) {
+        return productRepository.findAllByName(name, pageable);
     }
 
     @Override
