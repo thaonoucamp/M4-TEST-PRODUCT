@@ -19,12 +19,12 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Iterable<Category> findAll() {
+    public Iterable<Product> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public Optional<Category> findById(Long id) {
+    public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
 

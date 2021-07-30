@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -31,7 +30,7 @@ public class CategoryController {
     }
 
     @PostMapping("/create-category")
-    public ModelAndView saveCategory(@ModelAttribute("category") Locale.Category category) {
+    public ModelAndView saveCategory(@ModelAttribute("category") Category category) {
         categoryService.save(category);
         ModelAndView modelAndView = new ModelAndView("/category/create");
         modelAndView.addObject("category", new Category());
@@ -53,7 +52,7 @@ public class CategoryController {
     }
 
     @PostMapping("/edit-category")
-    public ModelAndView updateCategory(@ModelAttribute("category") Locale.Category category) {
+    public ModelAndView updateCategory(@ModelAttribute("category") Category category) {
         categoryService.save(category);
         ModelAndView modelAndView = new ModelAndView("/category/edit");
         modelAndView.addObject("category", new Category());
